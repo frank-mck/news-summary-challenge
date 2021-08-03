@@ -1,21 +1,19 @@
   "use strict";
   
   class Article {
-    articleData(url) {
-      return fetch(`http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=${url}?show-fields=body&show-fields=thumbnail`).then(response => {
-      return response.json();
-    });
-  };
+    static render () {
+      const url = 'https://content.guardianapis.com/search?q=football&api-key=f6150436-16fa-4d9d-aa06-5cfffdd496b9';
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        let stories = data.response.results;
+        stories.forEach(story => {
+          const p = document.createElement('p');
+          p.textContent = story.webTitle;
+          document.body.appendChild(p);
+      })
+    }).catch(error => console.error(error))
+  }
+}
 
-  articleHeader() {
-    return this.articleData("http://content.guardianapis.com/football").then(header =>{
-      return header.response.results.map(n => n.webTitle)
-    }).then(post => {
-      return JSON.stringify(post[0])
-    }).then(result => result)
-  };
-};
-
-
-//fields.body
-//webTitle
+Article.render();
