@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/frank-mck/news-summary-challenge/issues"
   },
-  "homepage": "https://github.com/frank-mck/news-summary-challenge#readme"
+  "homepage": "https://github.com/frank-mck/news-summary-challenge#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
 }
